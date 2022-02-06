@@ -45,7 +45,7 @@ class App extends React.Component {
     // boolean values
     const firstKindCheck = inputTextArr.every((value) => value !== '');
     const atributesCheck = inputNumArr
-      .every((num) => (num > minV && num <= maxV))
+      .every((num) => (num >= minV && num <= maxV))
       && inputNumArr.reduce((acc, cur) => acc + cur) <= maxSum;
 
     this.setState(() => ({ isSaveButtonDisabled: !(firstKindCheck && atributesCheck) }));
