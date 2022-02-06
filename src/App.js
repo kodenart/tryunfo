@@ -15,16 +15,40 @@ class App extends React.Component {
       cardRare: '',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
     };
 
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.saveButtonCheck = this.saveButtonCheck.bind(this);
   }
 
   onChangeHandler({ target }) {
     this.setState({
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
-    });
+    }, this.saveButtonCheck);
+  }
+
+  saveButtonCheck() {
+    // getting the current state
+    const {
+      cardName, cardImage, cardRare, cardAttr1, cardAttr2, cardAttr3,
+      cardDescription,
+    } = this.state;
+      // creating arrays with the data
+    const inputTextArr = [cardName, cardDescription, cardImage, cardRare];
+    const inputNumArr = [parseInt(cardAttr1, 10),
+      parseInt(cardAttr2, 10), parseInt(cardAttr3, 10)];
+      // values to check the atributes
+    const minV = 0;
+    const maxV = 90;
+    const maxSum = 210;
+    // boolean values
+    const firstKindCheck = inputTextArr.every((value) => value !== '');
+    const atributesCheck = inputNumArr
+      .every((num) => (num > minV && num <= maxV))
+      && inputNumArr.reduce((acc, cur) => acc + cur) <= maxSum;
+
+    this.setState(() => ({ isSaveButtonDisabled: !(firstKindCheck && atributesCheck) }));
   }
 
   render() {
@@ -49,6 +73,7 @@ class App extends React.Component {
             hasTrunfo={ hasTrunfo }
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.onChangeHandler }
+            // checksTheSaveButton={ this.saveButtonCheck }
           />
           <Card
             cardName={ cardName }

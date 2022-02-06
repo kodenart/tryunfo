@@ -11,7 +11,9 @@ export default class Form extends Component {
     } = this.props;
 
     return (
-      <form style={ { display: 'flex', flexDirection: 'column', width: '30vw' } }>
+      <form
+        style={ { display: 'flex', flexDirection: 'column', width: '30vw' } }
+      >
         <h1>just to test</h1>
         Nome
         <Input
@@ -68,6 +70,7 @@ export default class Form extends Component {
           onChange={ onInputChange }
           name="cardRare"
         >
+          <option value="">Selecione uma raridade</option>
           <option value="normal">normal</option>
           <option value="raro">raro</option>
           <option value="muito raro">muito raro</option>
@@ -105,5 +108,6 @@ Form.propTypes = {
   hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
+  // checksTheSaveButton: PropTypes.func.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
 };
