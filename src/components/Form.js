@@ -19,6 +19,7 @@ export default class Form extends Component {
           testId="name-input"
           value={ cardName }
           onChange={ onInputChange }
+          stateName="cardName"
         />
         Descrição
         <Input
@@ -26,6 +27,7 @@ export default class Form extends Component {
           testId="description-input"
           value={ cardDescription }
           onChange={ onInputChange }
+          stateName="cardDescription"
         />
         Atributo 1
         <Input
@@ -33,6 +35,7 @@ export default class Form extends Component {
           testId="attr1-input"
           value={ cardAttr1 }
           onChange={ onInputChange }
+          stateName="cardAttr1"
         />
         Atributo 2
         <Input
@@ -40,6 +43,7 @@ export default class Form extends Component {
           testId="attr2-input"
           value={ cardAttr2 }
           onChange={ onInputChange }
+          stateName="cardAttr2"
         />
         Atributo 3
         <Input
@@ -47,6 +51,7 @@ export default class Form extends Component {
           testId="attr3-input"
           value={ cardAttr3 }
           onChange={ onInputChange }
+          stateName="cardAttr3"
         />
         ImagemSLA
         <Input
@@ -54,12 +59,14 @@ export default class Form extends Component {
           testId="image-input"
           value={ cardImage }
           onChange={ onInputChange }
+          stateName="cardImage"
         />
         Raridade
         <select
           data-testid="rare-input"
           value={ cardRare }
           onChange={ onInputChange }
+          name="cardRare"
         >
           <option value="normal">normal</option>
           <option value="raro">raro</option>
@@ -70,6 +77,7 @@ export default class Form extends Component {
           testId="trunfo-input"
           checked={ cardTrunfo }
           onChange={ onInputChange }
+          stateName="cardTrunfo"
         />
         <button
           type="button"

@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 
 export default class Input extends Component {
   render() {
-    const { iType, testId, onChange, value, checked } = this.props;
+    const { iType, testId, onChange, value, checked, stateName } = this.props;
     return (
       <input
         type={ iType }
         data-testid={ testId }
-        onChange={ onChange }
         value={ value }
         checked={ checked }
+        name={ stateName }
+        onChange={ onChange }
       />
     );
   }
@@ -18,14 +19,16 @@ export default class Input extends Component {
 
 Input.defaultProps = {
   checked: undefined,
+  value: '',
 };
 
 Input.propTypes = {
   iType: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   checked: PropTypes.bool,
+  stateName: PropTypes.string.isRequired,
   // id: PropTypes.string.isRequired,
   // onClick: PropTypes.func.isRequired,
 };
