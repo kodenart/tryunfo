@@ -81,7 +81,7 @@ export default class Form extends Component {
           onChange={ onInputChange }
           name="cardRare"
         >
-          <option value="">Selecione uma raridade</option>
+          {/* <option value="">Selecione uma raridade</option> */}
           <option value="normal">normal</option>
           <option value="raro">raro</option>
           <option value="muito raro">muito raro</option>
