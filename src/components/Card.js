@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import './Card.css';
 
 export default class Card extends Component {
   render() {
@@ -11,7 +12,7 @@ export default class Card extends Component {
     const trunfo = cardTrunfo ? <p data-testid="trunfo-card">Super Trunfo</p> : null;
 
     return (
-      <div>
+      <div key={ cardName + cardDescription }>
         {/* remoção do h3 porque estava atrapalhando os testes do requisito 8 */}
         {/* <h3>{cardName}</h3> */}
         <p data-testid="name-card">{cardName}</p>

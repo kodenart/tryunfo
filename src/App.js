@@ -23,6 +23,7 @@ class App extends React.Component {
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.saveButtonCheck = this.saveButtonCheck.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
+    this.deleteCard = this.deleteCard.bind(this);
   }
 
   onSaveButtonClick() {
@@ -49,7 +50,9 @@ class App extends React.Component {
           cardRare: 'normal',
           cardTrunfo: false,
           cardList: [...prevState.cardList, newCard],
-          hasTrunfo: true };
+          hasTrunfo: true,
+          isSaveButtonDisabled: true,
+        };
       }
       return {
         cardName: '',
@@ -62,6 +65,7 @@ class App extends React.Component {
         cardTrunfo: false,
         cardList: [...prevState.cardList,
           newCard],
+        isSaveButtonDisabled: true,
       };
     });
   }
@@ -70,6 +74,16 @@ class App extends React.Component {
     this.setState({
       [target.name]: target.type === 'checkbox' ? target.checked : target.value,
     }, this.saveButtonCheck);
+  }
+
+  deleteCard(deletingCard) {
+    const { cardList } = this.state;
+    const newList = cardList.filter((card) => card !== deletingCard);
+    if (deletingCard.cardTrunfo) {
+      this.setState({ cardList: newList, hasTrunfo: false });
+    } else {
+      this.setState({ cardList: newList });
+    }
   }
 
   saveButtonCheck() {
@@ -121,6 +135,7 @@ class App extends React.Component {
             onSaveButtonClick={ this.onSaveButtonClick }
           />
           <Card
+            key="previewCard"
             cardName={ cardName }
             cardDescription={ cardDescription }
             cardAttr1={ cardAttr1 }
@@ -132,7 +147,22 @@ class App extends React.Component {
           />
         </div>
         <div className="baralho">
-          {cardList.map((card) => <Card key={ card.cardName } { ...card } />)}
+          {cardList
+            .map((card) => (
+              <div key={ `${card.cardName} div` } className="eachCard">
+                <Card key={ card.cardName } { ...card } />
+                <button
+                  style={ { backgroundColor: 'red' } }
+                  type="button"
+                  key={ `${card.cardName} button` }
+                  data-testid="delete-button"
+                  onClick={ () => { this.deleteCard(card); } }
+                >
+                  Excluir
+
+                </button>
+              </div>
+            ))}
         </div>
       </div>
     );
