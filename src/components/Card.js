@@ -12,7 +12,8 @@ export default class Card extends Component {
 
     return (
       <div>
-        <h1>ameno dorime</h1>
+        {/* remoção do h3 porque estava atrapalhando os testes do requisito 8 */}
+        {/* <h3>{cardName}</h3> */}
         <p data-testid="name-card">{cardName}</p>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{cardDescription}</p>

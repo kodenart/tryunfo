@@ -10,11 +10,22 @@ export default class Form extends Component {
       onSaveButtonClick, isSaveButtonDisabled,
     } = this.props;
 
+    // if there's an trunfo in the deck already, the component is not rendered
+    let trunfoCheckbox = <p>Você já tem um Super Trunfo em seu baralho</p>;
+    if (!hasTrunfo) {
+      trunfoCheckbox = (<Input
+        iType="checkbox"
+        testId="trunfo-input"
+        checked={ cardTrunfo }
+        onChange={ onInputChange }
+        stateName="cardTrunfo"
+      />);
+    }
     return (
       <form
         style={ { display: 'flex', flexDirection: 'column', width: '30vw' } }
       >
-        <h1>just to test</h1>
+        <h1>Crie sua carta!</h1>
         Nome
         <Input
           iType="text"
@@ -75,13 +86,7 @@ export default class Form extends Component {
           <option value="raro">raro</option>
           <option value="muito raro">muito raro</option>
         </select>
-        <Input
-          iType="checkbox"
-          testId="trunfo-input"
-          checked={ cardTrunfo }
-          onChange={ onInputChange }
-          stateName="cardTrunfo"
-        />
+        {trunfoCheckbox}
         <button
           type="button"
           data-testid="save-button"

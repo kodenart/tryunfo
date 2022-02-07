@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/Card';
 import Form from './components/Form';
+import './App.css';
 
 class App extends React.Component {
   constructor() {
@@ -36,7 +37,32 @@ class App extends React.Component {
         cardImage,
         cardRare,
         cardTrunfo };
-      return { cardList: [...prevState.cardList, newCard] };
+      // if a "trunfo" card is added to the deck, hasTrunfo becomes true
+      if (cardTrunfo) {
+        return {
+          cardName: '',
+          cardDescription: '',
+          cardAttr1: '0',
+          cardAttr2: '0',
+          cardAttr3: '0',
+          cardImage: '',
+          cardRare: 'normal',
+          cardTrunfo: false,
+          cardList: [...prevState.cardList, newCard],
+          hasTrunfo: true };
+      }
+      return {
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: 'normal',
+        cardTrunfo: false,
+        cardList: [...prevState.cardList,
+          newCard],
+      };
     });
   }
 
@@ -73,6 +99,7 @@ class App extends React.Component {
     const {
       cardName, cardImage, cardRare, cardAttr1, cardAttr2, cardAttr3,
       cardDescription, cardTrunfo, hasTrunfo, isSaveButtonDisabled,
+      cardList,
     } = this.state;
 
     return (
@@ -103,6 +130,9 @@ class App extends React.Component {
             cardRare={ cardRare }
             cardTrunfo={ cardTrunfo }
           />
+        </div>
+        <div id="baralho">
+          {cardList.map((card) => <Card key={ card.cardName } { ...card } />)}
         </div>
       </div>
     );
