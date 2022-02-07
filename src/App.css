@@ -1,14 +1,13 @@
-#baralho {
+.baralho {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: space-around;
   margin-top: 4vh;
 }
 
-#baralho div {
+.baralho div {
   border: 0.3em solid rgb(230, 225, 201);
-  border-radius: .3em;
-  padding: 5vh 5vw;
+  border-radius: 0.3em;
   margin: 2vh 2vw;
+  padding: 5vh 5vw;
 }

@@ -131,7 +131,7 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </div>
-        <div id="baralho">
+        <div className="baralho">
           {cardList.map((card) => <Card key={ card.cardName } { ...card } />)}
         </div>
       </div>
